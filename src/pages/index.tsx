@@ -1,118 +1,121 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { Roboto_Mono } from 'next/font/google'
+import {GitHub, Globe, Icon, Instagram, Key, Mail, Send, Server, Twitter, Video, Zap} from "react-feather";
+import {FunctionComponent} from "react";
 
-const inter = Inter({ subsets: ['latin'] })
+const RobotoMono = Roboto_Mono({ subsets: ['latin'] })
+
+const projects: ProjectInfo[] = [
+    {
+        title: "Atlas",
+        description: "Remote Video Controller and Client. Used at a public school event to control the videos on the projector",
+        color: "bg-emerald-400",
+        url: "https://github.com/rainloreley/atlas",
+        // @ts-ignore
+        icon: <Video size={25} />
+    },
+    {
+        title: "Lyra",
+        description: "Open-Source DMX light control software (WIP)",
+        color: "bg-blue-400",
+        url: "https://github.com/rainloreley/lyra",
+        // @ts-ignore
+        icon: <Zap size={25} />
+    },
+    {
+        title: "StealthComm",
+        description: "Website to contact the owner of a car anonymously",
+        color: "bg-purple-400",
+        url: "https://github.com/rainloreley/stealthcomm",
+        // @ts-ignore
+        icon: <Send size={25} />
+    },
+    {
+        title: "Aurora",
+        description: "Unofficial iOS app for Hetzner Cloud",
+        color: "bg-yellow-400",
+        url: "https://github.com/rainloreley/aurora",
+        // @ts-ignore
+        icon: <Server size={25} />
+    },
+    {
+        title: "Spica",
+        description: "iOS client for a social media website called Alles Micro",
+        color: "bg-red-400",
+        url: "https://github.com/rainloreley/Spica-iOS",
+        // @ts-ignore
+        icon: <Globe size={25} />
+    }
+]
 
 export default function Home() {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className={`p-4 w-full h-full dark:bg-dark-primary dark:text-white ${RobotoMono.className}`}>
+      <div id={"header"} className={"h-12 flex items-center"}>
+        <img alt={"profile picture"} src={"/pfp.jpg"} className={"w-10 h-10 rounded-lg"} />
+        <p className={"ml-2 mb-0.5 font-bold"}>abmgrt.dev</p>
+      </div>
+        <div className={"w-full justify-center px-8 mt-20 md:flex"}>
+            <div className={"w-full max-w-2xl md:max-w-md mx-auto break-words"}>
+                <img alt={"profile picture"} src={"/pfp.jpg"} className={"w-28 h-28 rounded-2xl"} />
+                <h1 className={"font-bold text-2xl mt-2"}>Adrian Baumgart</h1>
+                <div className={"flex mt-2"}>
+                    <a href={"mailto:adrian@abmgrt.dev"} title={"Email"} target={"_blank"} className={"pr-2"}>
+                        <Mail size={21} />
+                    </a>
+                    <a href={"/pgp/adrian@abmgrt.dev.asc"} title={"PGP public key"} target={"_blank"} className={"px-2"}>
+                        <Key size={21} />
+                    </a>
+                    <a href={"https://github.com/rainloreley"} title={"GitHub"} target={"_blank"} className={"px-2"}>
+                        <GitHub size={21} />
+                    </a>
+                    <a href={"https://twitter.com/rainloreley"} title={"Twitter"} target={"_blank"} className={"px-2"}>
+                        <Twitter size={21} />
+                    </a>
+                    <a href={"https://instagram.com/rainloreley"} title={"Instagram"} target={"_blank"} className={"px-2"}>
+                        <Instagram size={21} />
+                    </a>
+                </div>
+                {/* eslint-disable-next-line react/no-unescaped-entities */}
+                <p className={"mt-3"}>Heyo! I'm a self-taught fullstack developer, high school student and sound technician from Germany.</p>
+                <img alt={"skill icons"} className={"mt-3"} src={"https://skillicons.dev/icons?i=html,css,js,ts,nodejs,react,tailwind,nextjs,git,github,flutter,dart,electron,docker,arduino,cloudflare,figma,linux,swift"} />
+            </div>
+            <div className={"md:w-full md:px-4 pb-4"}>
+                <div className={"border-t-gray-200 border-t-2 mt-4 md:border-none md:mt-0"}>
+                    <h2 className={"font-bold text-2xl mt-2 md:mt-0"}>Projects</h2>
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    <p>These are some of the projects I've worked on. You can find more on <a href={"https://github.com/rainloreley?tab=repositories"} target={"_blank"} className={"underline"}>GitHub</a>.</p>
+                    <div className={"grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2"}>
+                        {projects.map((project) => (
+                            <ProjectChip key={project.title} title={project.title} description={project.description} color={project.color} url={project.url} icon={project.icon} />
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
   )
+}
+
+type ProjectInfo = {
+    title: string,
+    description: string,
+    color: string,
+    url: string,
+    icon: Icon | undefined
+}
+
+const ProjectChip: FunctionComponent<ProjectInfo> = ({title, description, color, url, icon}) => {
+    return (
+        <a href={url} target={"_blank"} className={`${color} rounded-lg bg-opacity-40 hover:bg-opacity-50 p-4 max-w-xl mt-2 flex items-center`}>
+            {icon != undefined ? <div className={"mr-4"}>
+                {/* @ts-ignore */}
+                {icon}
+                </div>
+                : <div />}
+            <div>
+                <h3 className={"font-bold text-lg"}>{title}</h3>
+                <p className={"text-sm mt-1"}>{description}</p>
+            </div>
+        </a>
+    )
 }
