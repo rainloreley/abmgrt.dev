@@ -1,5 +1,5 @@
 import { Roboto_Mono } from 'next/font/google'
-import {GitHub, Globe, Icon, Instagram, Key, Mail, Send, Server, Twitter, Video, Zap} from "react-feather";
+import {GitHub, Globe, Icon, Instagram, Key, Mail, MapPin, Send, Server, Twitter, Video, Zap} from "react-feather";
 import {FunctionComponent} from "react";
 
 const RobotoMono = Roboto_Mono({ subsets: ['latin'] })
@@ -56,9 +56,14 @@ export default function Home() {
       </div>
         <div className={"w-full justify-center px-8 mt-20 md:flex"}>
             <div className={"w-full max-w-2xl md:max-w-md mx-auto break-words"}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img alt={"profile picture"} src={"/pfp.jpg"} className={"w-28 h-28 rounded-2xl"} />
                 <h1 className={"font-bold text-2xl mt-2"}>Adrian Baumgart</h1>
-                <div className={"flex mt-2"}>
+                <div className={"flex items-center mt-2"}>
+                    <MapPin size={18} />
+                    <p className={"ml-2"}>Heidelberg, Germany 🇩🇪</p>
+                </div>
+                <div className={"flex mt-3"}>
                     <a href={"mailto:adrian@abmgrt.dev"} title={"Email"} target={"_blank"} className={"pr-2"}>
                         <Mail size={21} />
                     </a>
