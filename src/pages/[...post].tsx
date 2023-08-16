@@ -28,7 +28,7 @@ export const getStaticPaths = async () => {
 // @ts-ignore
 export const getStaticProps = async ({ params }) => {
     console.log(params.post);
-    const post = getPost(params.post.join("\\"));
+    const post = getPost(params.post.join("/"));
     const mdxSource = await serialize(post.content, {
         mdxOptions: {
             rehypePlugins: [rehypeSlug],
