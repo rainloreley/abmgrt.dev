@@ -17,7 +17,7 @@ export default function PostsPage({ data, content }) {
 
 export const getStaticPaths = async () => {
     const posts = getPosts();
-    const paths = posts.map((post) => ({ params: { post: post.post.slice(6).split("\\") } }));
+    const paths = posts.map((post) => ({ params: { post: post.post.slice(6).split("/") } }));
     console.log(JSON.stringify(paths));
     return {
         paths,
