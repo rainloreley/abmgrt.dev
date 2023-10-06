@@ -1,7 +1,6 @@
 import {
     GitHub,
     Globe,
-    Icon,
     Instagram,
     Key,
     Link,
@@ -13,10 +12,18 @@ import {
     Video,
     Zap
 } from "react-feather";
-import {FunctionComponent} from "react";
+import {FunctionComponent, ReactElement} from "react";
 import Page from "@/components/page";
+import DMXIcon from "@/components/icons/DMXIcon";
 
 const projects: ProjectInfo[] = [
+    {
+        title: "ArtNet-FX5-Converter",
+        description: "Output incoming ArtNet data to the FX5 USB-DMX Interface (and other compatible ones)",
+        color: "bg-orange-400",
+        url: "https://github.com/rainloreley/artnet-fx5-convert",
+        icon: <DMXIcon />
+    },
     {
       title: "Shlink Manager",
       description: "Android app to manage your self-hosted Shlink instance",
@@ -123,7 +130,7 @@ type ProjectInfo = {
     description: string,
     color: string,
     url: string,
-    icon: Icon | undefined
+    icon: ReactElement | undefined
 }
 
 const ProjectChip: FunctionComponent<ProjectInfo> = ({title, description, color, url, icon}) => {
