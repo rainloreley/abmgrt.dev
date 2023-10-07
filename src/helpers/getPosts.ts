@@ -1,43 +1,44 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import {createAdapter} from "webdav-fs";
 
-const getPosts = () => {
-    //const files = fs.readdirSync(path.join("posts"));
-    const files = getAllFilesRecursively(path.join("posts"));
-    console.log(files);
-    const allPostsData = files.map((fileName) => {
-        const post = fileName.replace(".mdx", "")
-        console.log(post);
-        const fileContents = fs.readFileSync(
-            path.join(`${post}.mdx`),
-            "utf8"
-        );
-        const { data } = matter(fileContents);
-        return {
-            post,
-            data,
-        };
-    });
+// @ts-ignore
+const wfs = createAdapter(process.env.WEBDAV_URL, {
+    username: process.env.WEBDAV_USERNAME,
+    password: process.env.WEBDAV_PASSWORD
+});
 
-    console.log(allPostsData);
-
-    return allPostsData;
+const getPosts = async () => {
+    return await getAllFilesRecursively("");
 };
 
-const getAllFilesRecursively = (dir: string, files: string[] = []) => {
-    const fileList = fs.readdirSync(dir);
-    for (const file of fileList) {
-        const name = path.join(dir, file);
-        const isDirectory = fs.statSync(name).isDirectory();
-        if (isDirectory) {
-            getAllFilesRecursively(name, files);
-        }
-        else {
-            files.push(name);
-        }
-    }
-    return files;
+const getAllFilesRecursively = (dir: string, files: string[] = []): Promise<string[]> => {
+    return new Promise<string[]>((resolve) => {
+        wfs.readdir(dir, async (error, fileList) => {
+            if (error) {
+                console.log(error);
+                resolve([]);
+            }
+            else {
+                for await (const file of fileList as string[]) {
+                    const name = `${dir}/${file}`//path.join(dir, file);
+                    await new Promise((resolve2) => {
+                        wfs.stat(name, (error, stat) => {
+                            const isDirectory = stat?.isDirectory();
+                            if (isDirectory) {
+                                getAllFilesRecursively(name, files).then((_files) => {
+                                    resolve2(0);
+                                });
+                            }
+                            else {
+                                files.push(name);
+                                resolve2(1);
+                            }
+                        });
+                    });
+                }
+                resolve(files);
+            }
+        });
+    });
 };
 
 export default getPosts;
