@@ -18,10 +18,10 @@ import DMXIcon from "@/components/icons/DMXIcon";
 
 const projects: ProjectInfo[] = [
     {
-        title: "ArtNet-FX5-Converter",
+        title: "ArtNet-USBDMX-Converter",
         description: "Send incoming ArtNet data to the FX5 USB-DMX Interface (and other compatible ones)",
         color: "bg-orange-400",
-        url: "https://github.com/rainloreley/artnet-fx5-convert",
+        url: "https://github.com/rainloreley/artnet-usbdmx-converter",
         icon: <DMXIcon />
     },
     {
